@@ -1,0 +1,9 @@
+services:
+  mysql:
+    container_name: mysql
+    image: bitnami/mysql:9.4.0-debian-12-r1
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=autoescola

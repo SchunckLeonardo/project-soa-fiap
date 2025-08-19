@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: autoescola
+  datasource:
+    url: jdbc:mysql://localhost/autoescola
+    username: root
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
