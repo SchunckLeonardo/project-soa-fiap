@@ -19,7 +19,7 @@ class InstructorService(
             Instructor(
                 name = instructor.name,
                 cnh = instructor.cnh,
-                speciality = instructor.speciality,
+                speciality = SpecialityEnum.getSpeciality(instructor.speciality),
                 address = instructor.address?.toAddress()
             )
         ).toInstructorResponseDTO()

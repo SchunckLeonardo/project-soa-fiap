@@ -10,7 +10,7 @@ enum class SpecialityEnum {
             }
 
             return runCatching {
-                SpecialityEnum.valueOf(speciality)
+                SpecialityEnum.valueOf(speciality.uppercase())
             }.onFailure {
                 EMPTY
             }.getOrThrow()
