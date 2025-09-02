@@ -2,7 +2,9 @@ package br.com.fiap.autoescola.entity
 
 import br.com.fiap.autoescola.Address
 import br.com.fiap.autoescola.entity.dto.InstructorResponseDTO
+import br.com.fiap.autoescola.entity.dto.ListInstructorResponseDTO
 import br.com.fiap.autoescola.entity.enum.SpecialityEnum
+import br.com.fiap.autoescola.entity.enum.StatusEnum
 import br.com.fiap.autoescola.toAddressDTO
 import jakarta.persistence.Column
 import jakarta.persistence.Embedded
@@ -27,6 +29,16 @@ data class Instructor(
     val name: String? = null,
 
     @Column
+    val email: String? = null,
+
+    @Column
+    val phone: String? = null,
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    var status: StatusEnum? = StatusEnum.ACTIVE,
+
+    @Column
     val cnh: String? = null,
 
     @Column
@@ -46,5 +58,14 @@ fun Instructor.toInstructorResponseDTO(): InstructorResponseDTO {
         cnh = cnh,
         speciality = speciality,
         address = address?.toAddressDTO()
+    )
+}
+
+fun Instructor.toListInstructorResponseDTO(): ListInstructorResponseDTO {
+    return ListInstructorResponseDTO(
+        name = name,
+        email = email,
+        cnh = cnh,
+        speciality = speciality.toString()
     )
 }

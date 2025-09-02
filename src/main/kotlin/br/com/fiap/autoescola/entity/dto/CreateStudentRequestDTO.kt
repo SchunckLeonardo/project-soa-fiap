@@ -1,12 +1,12 @@
 package br.com.fiap.autoescola.entity.dto
 
+import br.com.fiap.autoescola.entity.Student
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
-import jakarta.validation.constraints.Pattern
 
-data class CreateInstructorRequestDTO(
+data class CreateStudentRequestDTO(
     @field:NotBlank
     val name: String? = null,
 
@@ -15,13 +15,22 @@ data class CreateInstructorRequestDTO(
     val email: String? = null,
 
     @field:NotBlank
-    @field:Pattern(regexp = "[0-9]+-[0-9]+-[0-9]+")
-    val cnh: String? = null,
+    val phone: String? = null,
 
-    @field:NotNull
-    val speciality: String? = null,
+    @field:NotBlank
+    val cpf: String? = null,
 
     @field:NotNull
     @field:Valid
     val address: AddressDTO? = null
 )
+
+fun CreateStudentRequestDTO.toStudent(): Student {
+    return Student(
+        name = name,
+        email = email,
+        phone = phone,
+        cpf = cpf,
+        address = address?.toAddress()
+    )
+}
