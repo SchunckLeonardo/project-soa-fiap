@@ -1,11 +1,9 @@
 package br.com.fiap.autoescola.entity
 
-import br.com.fiap.autoescola.Address
 import br.com.fiap.autoescola.entity.dto.InstructorResponseDTO
 import br.com.fiap.autoescola.entity.dto.ListInstructorResponseDTO
 import br.com.fiap.autoescola.entity.enum.SpecialityEnum
 import br.com.fiap.autoescola.entity.enum.StatusEnum
-import br.com.fiap.autoescola.toAddressDTO
 import jakarta.persistence.Column
 import jakarta.persistence.Embedded
 import jakarta.persistence.Entity

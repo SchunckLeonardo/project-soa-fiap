@@ -1,11 +1,13 @@
 package br.com.fiap.autoescola.entity
 
-import br.com.fiap.autoescola.Address
 import br.com.fiap.autoescola.entity.dto.CreateStudentResponseDTO
 import br.com.fiap.autoescola.entity.dto.ListStudentsResponseDTO
+import br.com.fiap.autoescola.entity.enum.StatusEnum
 import jakarta.persistence.Column
 import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
@@ -28,6 +30,10 @@ data class Student(
 
     @Column
     val phone: String? = null,
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    var status: StatusEnum? = StatusEnum.ACTIVE,
 
     @Column
     val cpf: String? = null,

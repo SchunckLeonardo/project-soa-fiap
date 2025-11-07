@@ -1,4 +1,4 @@
-package br.com.fiap.autoescola
+package br.com.fiap.autoescola.entity
 
 import br.com.fiap.autoescola.entity.dto.AddressDTO
 import jakarta.persistence.Embeddable

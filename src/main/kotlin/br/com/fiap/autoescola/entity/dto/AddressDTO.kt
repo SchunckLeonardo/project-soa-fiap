@@ -1,6 +1,6 @@
 package br.com.fiap.autoescola.entity.dto
 
-import br.com.fiap.autoescola.Address
+import br.com.fiap.autoescola.entity.Address
 import jakarta.validation.constraints.NotBlank
 
 data class AddressDTO(

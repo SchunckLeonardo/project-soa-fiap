@@ -2,7 +2,7 @@ spring:
   application:
     name: autoescola
   datasource:
-    url: jdbc:mysql://localhost/autoescola
+    url: jdbc:mysql://localhost:3306/autoescola
     username: root
     password: admin
   jpa:
