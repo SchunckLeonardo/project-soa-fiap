@@ -15,6 +15,7 @@ import jakarta.persistence.EntityNotFoundException
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 
 @Service
 class InstructorService(
@@ -44,9 +45,7 @@ class InstructorService(
     }
 
     fun updateInstructor(instructorId: Long, instructorUpdate: UpdateInstructorRequestDTO) {
-        val instructor = instructorRepository.findById(instructorId).orElseThrow {
-            throw EntityNotFoundException("Instructor with id $instructorId not found")
-        }
+        val instructor = findInstructorById(instructorId)
 
         instructorRepository.save(
             Instructor(
@@ -62,15 +61,28 @@ class InstructorService(
     }
 
     fun inactiveInstructor(instructorId: Long) {
-        val instructor = instructorRepository.findById(instructorId).orElseThrow {
-            throw EntityNotFoundException("Instructor with id $instructorId not found")
-        }
+        val instructor = findInstructorById(instructorId)
 
         instructor.status = StatusEnum.INACTIVE
 
         instructorRepository.save(
             instructor
         )
+    }
+
+    fun findInstructorById(id: Long): Instructor =
+        instructorRepository.findById(id).orElseThrow {
+            throw EntityNotFoundException("Instructor with id $id not found")
+        }
+
+    fun findAvailableInstructor(dateTime: LocalDateTime): Instructor {
+        val availableInstructors = instructorRepository.findAvailableInstructors(dateTime)
+
+        if (availableInstructors.isEmpty()) {
+            throw Exception("No available instructors")
+        }
+
+        return availableInstructors.random()
     }
 
 }

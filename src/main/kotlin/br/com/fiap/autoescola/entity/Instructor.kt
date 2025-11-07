@@ -12,6 +12,7 @@ import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Table(name = "tb_instructor")
@@ -45,7 +46,10 @@ data class Instructor(
 
     @Column
     @Embedded
-    val address: Address? = null
+    val address: Address? = null,
+
+    @OneToMany(mappedBy = "instructor")
+    val schedules: MutableList<Schedule> = mutableListOf()
 
 )
 

@@ -39,7 +39,7 @@ class StudentService(
     }
 
     fun updateStudent(studentId: Long, request: UpdateStudentRequestDTO) {
-        val student = findStudentById(studentId)
+        val student = findActiveStudentById(studentId)
 
         studentRepository.save(
             student.copy(
@@ -61,7 +61,7 @@ class StudentService(
     }
 
     fun inactiveStudent(studentId: Long) {
-        val student = findStudentById(studentId)
+        val student = findActiveStudentById(studentId)
         studentRepository.save(
             student.copy(
                 status = StatusEnum.INACTIVE
@@ -69,8 +69,8 @@ class StudentService(
         )
     }
 
-    private fun findStudentById(id: Long): Student =
-        studentRepository.findById(id).orElseThrow {
+    fun findActiveStudentById(id: Long): Student =
+        studentRepository.findActiveStudentById(id).orElseThrow {
             throw Exception("Student with id $id not found")
         }
 
